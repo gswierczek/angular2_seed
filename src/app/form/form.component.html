@@ -1,12 +1,20 @@
 <div class="container">
   <h3>Angular 2 Template-Driven Forms Training</h3>
   <form #form="ngForm" novalidate>
-    <div class="form-group">
-      <label>First Name</label>
-      <input type="text" class="form-control" required name="firstName"
+    <div class="form-group" [class.has-error]="firstName.invalid && firstName.touched">
+      <label class="control-label">First Name</label>
+      <input #firstName="ngModel" type="text" class="form-control" required name="firstName"
              [(ngModel)]="model.firstName">
+      <div *ngIf="firstName.invalid && firstName.touched" class="alert alert-danger">
+        First Name is required.
+      </div>
     </div>
 
+    Classes
+    <br><br>
+
+
+    <br><br>
     Model: {{ model | json }}
     <br>
     Angular: {{ form.value | json }}
@@ -44,16 +52,20 @@
     </div>
 
 
-    <div class="form-group">
+    <div class="form-group" [class.has-error]="hasPrimaryLanguageError">
       <label>Primary Language</label>
-      <select class="form-control"
-      name="primaryLanguage" [(ngModel)]="model.primaryLanguage">
+      <select class="form-control" class="form-control" name="primaryLanguage" [(ngModel)]="model.primaryLanguage"
+      (blur)="validatePrimaryLanguage(primaryLanguage.value)" #primaryLanguage
+      (change)="validatePrimaryLanguage(primaryLanguage.value)">
+        <option value="default">Select the language...</option>
         <option *ngFor="let lang of languages">
           {{ lang }}
         </option>
       </select>
     </div>
-    <button class="btn btn-primary" type="submit">Ok</button>
+    <button class="btn btn-primary" type="submit"
+    [disabled]="form.invalid">Ok</button>
+
   </form>
 </div>
 

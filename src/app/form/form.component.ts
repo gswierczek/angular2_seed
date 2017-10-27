@@ -8,6 +8,14 @@ import {Employee} from '../models/employee.model';
 })
 export class FormComponent {
   languages = ['English', 'Spanish', 'Other'];
-  model = new Employee('Grzegorz', 'Swierczek', true, 'w2', 'English');
+  model = new Employee('', '', false, '', 'default');
+  hasPrimaryLanguageError = false;
 
+  validatePrimaryLanguage(value) {
+    if (value === 'default') {
+      this.hasPrimaryLanguageError = true;
+    } else {
+      this.hasPrimaryLanguageError = false;
+    }
+  }
 }
