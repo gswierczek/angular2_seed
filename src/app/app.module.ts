@@ -11,6 +11,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { ProductDetailComponent } from './products/product-detail.component';
 import {RouterModule} from '@angular/router';
 import {ProductGuardService} from './products/product-guard.service';
+import { FormComponent } from './form/form.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import {ProductGuardService} from './products/product-guard.service';
     WelcomeComponent,
     ConvertToSpacesPipe,
     StarComponent,
-    ProductDetailComponent
+    ProductDetailComponent,
+    FormComponent
   ],
   imports: [
     BrowserModule,
@@ -28,6 +30,7 @@ import {ProductGuardService} from './products/product-guard.service';
     RouterModule.forRoot([
       { path: 'products', component: ProductListComponent },
       { path: 'products/:id', canActivate: [ProductGuardService], component: ProductDetailComponent },
+      { path: 'form', component: FormComponent },
       { path: 'welcome', component: WelcomeComponent },
       { path: '', redirectTo: 'welcome', pathMatch: 'full'},
       { path: '**', redirectTo: 'welcome', pathMatch: 'full'}

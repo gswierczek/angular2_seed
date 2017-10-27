@@ -1,0 +1,61 @@
+<div class="container">
+  <h3>Angular 2 Template-Driven Forms Training</h3>
+  <form #form="ngForm" novalidate>
+    <div class="form-group">
+      <label>First Name</label>
+      <input type="text" class="form-control" required name="firstName"
+             [(ngModel)]="model.firstName">
+    </div>
+
+    Model: {{ model | json }}
+    <br>
+    Angular: {{ form.value | json }}
+
+    <div class="form-group">
+      <label>Last Name</label>
+      <input type="text" class="form-control" required name="lastName"
+             [(ngModel)]="model.lastName">
+    </div>
+
+
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" [(ngModel)]="model.isFullTime" name="is-full-time" ngModel>
+        Full Time Employee
+      </label>
+    </div>
+
+
+
+    <label>Payment Type</label>
+    <div class="radio">
+      <label>
+        <input type="radio" name="paymentType" value="w2" checked
+        [(ngModel)]="model.paymentType">
+        W2
+      </label>
+    </div>
+    <div class="radio">
+      <label>
+        <input type="radio" name="paymentType" value="1099"
+        [(ngModel)]="model.paymentType">
+        1099
+      </label>
+    </div>
+
+
+    <div class="form-group">
+      <label>Primary Language</label>
+      <select class="form-control"
+      name="primaryLanguage" [(ngModel)]="model.primaryLanguage">
+        <option *ngFor="let lang of languages">
+          {{ lang }}
+        </option>
+      </select>
+    </div>
+    <button class="btn btn-primary" type="submit">Ok</button>
+  </form>
+</div>
+
+
+{{form.pristine}}
